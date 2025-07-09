@@ -1,30 +1,29 @@
-import express, { Request, Response, NextFunction } from "express"
+import express { Request, Response, NextFunction } from "express"
+import dotenv from 'dotenv';
 import { connectDb } from "./config/connectMongoDb"
+import bookRoutes from './routes/bookRouter'
 
-//import { bookRouter } from "./routes/bookRouter"
-//import { authRouter } from "./routes/authRouter"
+dotenv.config(); //Cargar variables de entorno
 
-import cors from "cors"
-//import { protect } from "./middleware/auth"
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-process.loadEnvFile()
+//Conectar a la base de datos
+connectDb();
 
-const PORT = process.env.PORT || 3000
+//Middleware para parsear JSON en el cuerpo de las solicitudes
+app.use(express.json());
 
-const app = express()
-// permitiiendo utilizar el cuerpo de la petición
-app.use(express.json())
-// permitiendo que el frontend haga uso del back
-app.use(cors())
+//Rutas de la API
+app.use('/api/books', bookRoutes);
 
-// auth -> authorization
-app.use("/api/auth", authRouter)
+//Manejo de rutas no encontradas
+app.use((req, res) => {
+  res.status(404).json({ message: 'Ruta no encontrada' });
+});
 
-// antes de acceder a los productos pedir permiso
-// middleware -> una función que se ejecuta en el medio de la petición
-app.use("/api/books", bookRouter)
-
+//Iniciar el servidor
 app.listen(PORT, () => {
   console.log(`✅ Servidor HTTP en funcionamiento en el puerto ${PORT}.`)
   connectDb()
-})
+});
