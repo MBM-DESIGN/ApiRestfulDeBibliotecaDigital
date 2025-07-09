@@ -1,4 +1,4 @@
-/*import { Router } from 'express';
+import { Router } from 'express';
 import {
   getAllBooks,
   getBookById,
@@ -9,10 +9,10 @@ import {
 
 const router = Router();
 
-router.get('/', getAllBooks);
-router.get('/:id', getBookById);
-router.post('/', createBook);
-router.patch('/:id', updateBook); // PATCH para actualizaciones parciales
-router.delete('/:id', deleteBook);
+router.get('/', getAllBooks); //Obtener todos los libros
+router.get('/:id', getBookById); //Obtener un libro por ID
+router.post('/', createBook); //Agregar un nuevo libro
+router.patch('/:id', updateBook); //Actualizar un libro
+router.delete('/:id', deleteBook); //Borrar un libro
 
-export default router;*/
+export default router;

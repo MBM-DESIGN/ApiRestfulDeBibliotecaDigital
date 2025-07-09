@@ -10,7 +10,7 @@ const bookSchema = new Schema<IBook>(
     available: { type: Boolean, default: true },
   },
   {
-    timestamps: true, // Agrega createdAt y updatedAt automáticamente
+    timestamps: true, //Agrega createdAt y updatedAt automáticamente
   }
 );
 
