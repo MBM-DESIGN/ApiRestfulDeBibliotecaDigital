@@ -1,4 +1,4 @@
-/*import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 //Middleware genérico para manejo de errores
 export const errorHandler = (
@@ -17,7 +17,7 @@ export const errorHandler = (
      message = 'Ha ocurrido un error inesperado.';
     }*/
 
-  /*res.status(statusCode).json({
+  res.status(statusCode).json({
     success: false,
     message: message,
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined //Mostrar stack en desarrollo
@@ -32,4 +32,4 @@ export class ApiError extends Error {
     this.statusCode = statusCode;
     Object.setPrototypeOf(this, ApiError.prototype);
   }
-}*/
+};
